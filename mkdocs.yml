@@ -1,0 +1,15 @@
+site_name: "Base de données de livres illustrés (1839-1914) par Luce Abélès"
+# site_url: https://mydomain.org/mysite
+theme:
+  name: "material"
+  features:
+    - search.highlight
+    - search.share
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js
+  - Base_Luce.json  # Đảm bảo đường dẫn đúng
+nav:
+  - Présentation: Présentation.md
+  - Consulter la base: index.md           # Trang chính
+  - Bibliographie: Bibliographie.md

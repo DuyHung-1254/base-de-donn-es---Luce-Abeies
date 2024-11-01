@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations détaillées</title>
+    <style>
+        /* Đặt font và căn giữa trang */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f7f9;
+            padding: 20px;
+            margin: 0;
+            height: 100vh;
+        }
+        /* Khung chứa thông tin chi tiết */
+        #detail-section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            width: 100%;
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        /* Tiêu đề */
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 0;
+        }
+        /* Nội dung chi tiết */
+        #detail-section strong {
+            color: #555;
+        }
+        #detail-section div {
+            margin-bottom: 15px;
+            padding: 5px 0;
+        }
+        /* Phong cách liên kết */
+        a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="detail-section">
+        <h2>Informations détaillées</h2>
+        <!-- Thông tin chi tiết sẽ được hiển thị ở đây -->
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const docId = urlParams.get('id');
+
+    fetch('Base_Luce.json')
+    .then(response => response.json())
+    .then(data => {
+        const doc = data[docId];
+        const detailDiv = document.getElementById('detail-section');
+
+        const contentChunks = [
+            `<div><strong>Auteur:</strong> ${doc["prénom auteur"] || ''} ${doc["auteurMIN"] || ''}</div>`,
+            `<div><strong>Titre:</strong> ${doc["titre"] || ''}</div>`,
+            `<div><strong>Illustrateur:</strong> ${doc["prénom dessinateur"] || ''} ${doc["dessinateurMIN"] || ''}</div>`,
+            `<div><strong>Autre illustrateur:</strong> ${doc["autres dessinateursMIN"] || ''}</div>`,
+            `<div><strong>Vignettes:</strong> ${doc["vignettes"] || ''}</div>`,
+            `<div><strong>Description des illustrations:</strong> ${doc["référence ill"] || ''}</div>`,
+            `<div><strong>Graveur:</strong> ${doc["Graveur"] || ''}</div>`,
+            `<div><strong>Technique de reproduction des illustrations:</strong> ${doc["technique"] || ''}</div>`,
+            `<div><strong>Éditeur:</strong> ${doc["éditeur"] || ''}</div>`,
+            `<div><strong>Imprimeur:</strong> ${doc["imp"] || ''}</div>`,
+            `<div><strong>Imprimeur des planches:</strong> ${doc["imp pl"] || ''}</div>`,
+            `<div><strong>Lieu:</strong> ${doc["lieu"] || ''}</div>`,
+            `<div><strong>Date:</strong> ${doc["date"] || ''}</div>`,
+            `<div><strong>Achevé d’imprimer:</strong> ${doc["BF"] || ''} ${doc["dl"] || ''}</div>`,
+            `<div><strong>Format:</strong> ${doc["format"] || ''}</div>`,
+            `<div><strong>Nombre de volumes:</strong> ${doc["nombre vol"] || ''}</div>`,
+            `<div><strong>Nombre de pages:</strong> ${doc["n.pag."] || ''}</div>`,
+            `<div><strong>Reliure:</strong> ${doc["couv.,rel."] || ''}</div>`,
+            `<div><strong>Papier:</strong> ${doc["remarques papier"] || ''}</div>`,
+            `<div><strong>Tirage:</strong> ${doc["tirage"] || ''}</div>`,
+            `<div><strong>Prix éditeur:</strong> ${doc["prix éditeur"] || ''}</div>`,
+            `<div><strong>Livraisons:</strong> ${
+                [doc["nombre de livraisons"], doc["prix des livraisons"], doc["périodicité liv"], doc["première liv"] && doc["dernière liv"]]
+                    .filter(Boolean)
+                    .join(', ')
+            }</div>`,
+            `<div><strong>Genre:</strong> ${doc["genre"] || ''}</div>`,
+            `<div><strong>Traduction:</strong> ${doc["traduction"] || ''} ${doc["traducteur"] || ''}</div>`,
+            `<div><strong>Préface:</strong> ${doc["préface"] || ''}</div>`,
+            `<div><strong>Édition originale:</strong> ${doc["éd. or."] || ''}</div>`,
+            `<div><strong>Provenance:</strong> ${doc["prov"] || ''}</div>`,
+            `<div><strong>Référence bibliographique:</strong> ${doc["bibl."] || ''}</div>`,
+            `<div><strong>Catalogue d’éditeur:</strong> ${doc["catalogue d'éditeur"] || ''}</div>`,
+            `<div><strong>Comptes rendus:</strong> ${doc["comptes rendus"] || ''}</div>`,
+            `<div><strong>Prospectus:</strong> ${doc["prospectus"] || ''}</div>`,
+            `<div><strong>Affiche:</strong> ${doc["affiche"] || ''}</div>`,
+            `<div><strong>Public visé:</strong> ${doc["dest"] || ''}</div>`,
+            `<div><strong>Salon:</strong> ${doc["salon"] || ''}</div>`
+        ];
+
+        contentChunks.forEach(chunk => {
+            detailDiv.innerHTML += chunk;
+        });
+    });
+
+
+    </script>
+</body>
+</html>
